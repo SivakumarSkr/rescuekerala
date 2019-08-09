@@ -55,6 +55,7 @@ urlpatterns = [
     path('find_people/', views.find_people, name='find_people'),
     path('missing_persons/', views.missing_persons, name='missing_persons'),
     path('announcements/', views.announcements, name="Announcements"),
+    path('announcements_tag/<int:pk>/', views.announcements_by_tags, name="Announcements_by_tag"),
     path('camp_requirements/', views.camp_requirements_list, name='camp_requirements_list'),
     path('submission_success/', views.SubmissionSuccess.as_view(), name='submission_success'),
     url(r'request_update/(?P<request_id>\d+)/$', views.RequestUpdateView.as_view(), name='requestupdateview'),

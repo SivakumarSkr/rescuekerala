@@ -15,7 +15,7 @@ from django.core.cache.utils import make_template_fragment_key
 from django.core.cache import cache
 from django.dispatch import receiver
 from django.utils import timezone
-
+from taggit.managers import TaggableManager
 
 districts = (
     ('alp','Alappuzha - ആലപ്പുഴ'),
@@ -543,9 +543,10 @@ def upload_to(instance, filename):
 
 class Announcements(models.Model):
     dateadded = models.DateTimeField(auto_now_add=True)
+    tags = TaggableManager(help_text='tags must be in lowercase. A comma-separated list of tags.')
     priority = models.CharField(
         max_length=20,
-        choices = announcement_priorities,
+        choices=announcement_priorities,
         verbose_name='Priority',
         default='L')
 

@@ -209,7 +209,7 @@ class RescueCampAdmin(admin.ModelAdmin):
 
 
 class AnnouncementAdmin(admin.ModelAdmin):
-    fields = ['is_pinned', 'priority', 'description', 'image', 'upload']
+    pass
 
 
 class PersonAdmin(admin.ModelAdmin):
