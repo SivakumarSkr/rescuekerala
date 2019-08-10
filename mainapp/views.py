@@ -790,22 +790,15 @@ def find_people(request):
     return render(request, 'mainapp/people.html', {'filter': filter, "data": people})
 
 
-def announcements(request):
+def announcements(request, tagname=None):
+
     link_data = Announcements.objects.filter(is_pinned=False).order_by('-id').all()
-    pinned_data = Announcements.objects.filter(is_pinned=True).order_by('-id').all()[:5]
+    pinned_data = Announcements.objects.filter(is_pinned=True).order_by('-id').all()
+    if tagname:
+        link_data = link_data.filter(tags__name__in=[tagname])
+        pinned_data = pinned_data.filter(tags__name__in=[tagname])
     # As per the discussions orddering by id hoping they would be addded in order
-    paginator = Paginator(link_data, 10)
-    page = request.GET.get('page')
-    link_data = paginator.get_page(page)
-    return render(request, 'announcements.html', {'filter': filter, "data": link_data,
-                                                  'pinned_data': pinned_data})
-
-
-def announcements_by_tags(request, pk):
-    tag = Tag.objects.get(id=pk)
-    link_data = Announcements.objects.filter(is_pinned=False).filter(tags__name__in=[tag.name])
-    pinned_data = Announcements.objects.filter(is_pinned=True).filter(tags__name__in=[tag.name])
-    # As per the discussions orddering by id hoping they would be addded in order
+    pinned_data = pinned_data[:5]
     paginator = Paginator(link_data, 10)
     page = request.GET.get('page')
     link_data = paginator.get_page(page)

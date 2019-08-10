@@ -20,7 +20,7 @@
                 <span class="card-priority">Very Important</span><br/>
                 <span class="card-time">{% bootstrap_icon "time" %} {{ req.dateadded }}</span>
                 {% for tag in req.tags.all %}
-                    <a href="{% url 'Announcements_by_tag' tag.pk %}" style="margin :5px;"><span class="badge badge-primary"
+                    <a href="{% url 'Announcements' tagname=tag.name %}" style="margin :5px;"><span class="badge badge-primary"
                                                                                                  style="font-size:14px;padding:6px;background-color:#ff6b6b;">{{ tag.name }}</span></a>
                 {% endfor %}
             </div>
@@ -45,7 +45,7 @@
                 </span>
                 <span class="card-time">{% bootstrap_icon "time" %} {{ req.dateadded }}</span>
                 {% for tag in req.tags.all %}
-                <a href="{% url 'Announcements_by_tag' tag.pk %}" style="margin :5px;"><span class="badge badge-primary"
+                <a href="{% url 'Announcements' tagname=tag.name %}" style="margin :5px;"><span class="badge badge-primary"
                                                                                              style="font-size:14px;padding:6px;background-color:#0984e3;">{{ tag.name }}</span></a>
                 {% endfor %}
             </div>
